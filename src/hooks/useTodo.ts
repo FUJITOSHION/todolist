@@ -1,4 +1,6 @@
+// import { title } from 'node:process';
 import {useState, useEffect} from 'react'
+import { uuid } from 'uuidv4';
 
 import todoService from '../servicees/todos'
 import { Todos } from '../Types';
@@ -13,11 +15,14 @@ export const useTodo = () => {
     }, [])
 
     const toggleTodo = (id: string, completed: boolean) => {
-        console.log(id)
-        const newTodo: Todos = todos.find(todo=> todo.id === id ? {...todo, completed: !completed} : todo)
+        const todo = todos.find(todo => todo.id === id);
+        if (todo == null){
+            throw new Error('null')
+        }
+        const newTodo = { ...todo, completed: !completed };
         todoService.update(id, newTodo).then(updatedTodo => {
             const newTodos = todos.map(todo =>
-                todo.id !== updatedTodo.id ? todo : newTodos
+                todo.id !== updatedTodo.id ? todo : newTodo
             );
             setTodos(newTodos)
         })
@@ -29,5 +34,21 @@ export const useTodo = () => {
             setTodos(newTodos)
         })
     }
-    return {todos, toggleTodo, deleteTodo}
+
+    const addTodo = (title: string) => {
+        const newTodo: Todos = {
+            title: title,
+            completed: false,
+            id: uuid()
+        }
+        // const newTodos = [...todos, newTodo]
+        // setTodos(newTodos)
+        if (title === '') {
+            throw new Error('null')
+        }
+        todoService.add(newTodo).then(addedTodo => {
+            setTodos(addedTodo)
+        })
+    }
+    return {todos, toggleTodo, deleteTodo, addTodo}
 }

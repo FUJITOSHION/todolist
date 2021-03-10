@@ -2,18 +2,23 @@
   "todos": [
     {
       "title": "Angular の学習",
-      "id": "c7051c2c-9f9e-452b-999f-1ce412415545",
-      "completed": false
-    },
-    {
-      "title": "Vue.js の学習",
       "id": "82ebaa6d-95b9-4771-ac51-6570ab7bd1ac",
       "completed": false
     },
     {
-      "title": "React の学習",
-      "id": "3099525c-e0e7-4e68-8f0b-580bde787b7a",
-      "completed": false
+      "title": "Reactの学習",
+      "completed": false,
+      "id": "21f0b4af-8ada-440f-be1f-9c6604423b8a"
+    },
+    {
+      "title": "Vueの学習",
+      "completed": false,
+      "id": "cc3a96d3-03ac-460a-9f34-8e091290cb55"
+    },
+    {
+      "title": "jQueryの学習",
+      "completed": false,
+      "id": "58e19d05-13ca-40ed-accc-ac4e8c4f552c"
     }
   ]
 }

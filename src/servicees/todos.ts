@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import { Todos } from '../Types';
 
 const baesUrl = 'http://localhost:3001/todos';
@@ -8,7 +8,7 @@ const getAll = async () => {
     return response.data
 }
 
-const update = async (id: string, newTodo: Todos | undefined) => {
+const update = async (id: string, newTodo: Todos) => {
     const response = await axios.put(`${baesUrl}/${id}`, newTodo)
     return response.data
 }
@@ -18,4 +18,9 @@ const _delete = async (id: string) => {
     return id
 }
 
-export default {getAll, update, delete: _delete};
+const add = async (newTodo: Todos) =>{
+    const response = await axios.post(baesUrl, newTodo)
+    return response.data
+}
+
+export default {getAll, update, delete: _delete, add};
